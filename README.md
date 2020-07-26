@@ -105,22 +105,22 @@ with the tickers array by using a variable called the tickerIndex.
 
 #### Original Code 
 
-2) Initialize array of all tickers
+    2) Initialize array of all tickers
    
-Dim tickers(12) As String
+    Dim tickers(12) As String
 
-tickers(0) = "AY"
-tickers(1) = "CSIQ"
-tickers(2) = "DQ"
-tickers(3) = "ENPH"
-tickers(4) = "FSLR"
-tickers(5) = "HASI"
-tickers(6) = "JKS"
-tickers(7) = "RUN"
-tickers(8) = "SEDG"
-tickers(9) = "SPWR"
-tickers(10) = "TERP"
-tickers(11) = "VSLR"
+    tickers(0) = "AY"
+    tickers(1) = "CSIQ"
+    tickers(2) = "DQ"
+    tickers(3) = "ENPH"
+    tickers(4) = "FSLR"
+    tickers(5) = "HASI"
+    tickers(6) = "JKS"
+    tickers(7) = "RUN"
+    tickers(8) = "SEDG"
+    tickers(9) = "SPWR"
+    tickers(10) = "TERP"
+    tickers(11) = "VSLR"
 
    '3a) Initialize variables for starting price and ending price
 
@@ -191,17 +191,17 @@ completed much faster than using the nested for loop for earlier.
 
 Here are the run-times using the original code.
 
-image file 
+[2017 Original Run-time]<https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2017_Orginial.png> 
 
-image file
+[2018 Original Run-time]<https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2018_Original.png>
 
 Here are the run-times using the refactored code.
 
-image file
+[2017 Refactored Run-time]<https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2017.png>
 
-image file
+[2018 Refactored Run-time]<https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2018.png>
 
-Based on the run-times, it is apparent that the refactored code is more efficient than the original code.
+Based on the run-times, it is apparent that the refactored code run about .5 seconds faster than the original code making it more efficient. 
 
 ## Summary on Refactoring 
 
