@@ -106,56 +106,56 @@ with the tickers array by using a variable called the tickerIndex.
 #### Original Code 
 
     2) Initialize array of all tickers
-   
-    Dim tickers(12) As String
 
-    tickers(0) = "AY"
-    tickers(1) = "CSIQ"
-    tickers(2) = "DQ"
-    tickers(3) = "ENPH"
-    tickers(4) = "FSLR"
-    tickers(5) = "HASI"
-    tickers(6) = "JKS"
-    tickers(7) = "RUN"
-    tickers(8) = "SEDG"
-    tickers(9) = "SPWR"
-    tickers(10) = "TERP"
-    tickers(11) = "VSLR"
+        Dim tickers(12) As String
 
-   '3a) Initialize variables for starting price and ending price
+        tickers(0) = "AY"
+        tickers(1) = "CSIQ"
+        tickers(2) = "DQ"
+        tickers(3) = "ENPH"
+        tickers(4) = "FSLR"
+        tickers(5) = "HASI"
+        tickers(6) = "JKS"
+        tickers(7) = "RUN"
+        tickers(8) = "SEDG"
+        tickers(9) = "SPWR"
+        tickers(10) = "TERP"
+        tickers(11) = "VSLR"
 
-Dim startingPrice As Double
-Dim endingPrice As Double
+    '3a) Initialize variables for starting price and ending price
 
-   '3b) Activate data worksheet
-   
-Worksheets(yearValue).Activate
+        Dim startingPrice As Double
+        Dim endingPrice As Double
 
-   '3c) Get the number of rows to loop over
-   
-RowCount = Cells(Rows.Count, "A").End(xlUp).Row
+    '3b) Activate data worksheet
 
-   '4) Loop through tickers
-   
-For i = 0 To 11
-    ticker = tickers(i)
-    TotalVolume = 0
-    Worksheets(yearValue).Activate
-    
-       '5) loop through rows in the data
-       
+        Worksheets(yearValue).Activate
+
+    '3c) Get the number of rows to loop over
+
+        RowCount = Cells(Rows.Count, "A").End(xlUp).Row
+
+    '4) Loop through tickers
+
+        For i = 0 To 11
+        ticker = tickers(i)
+        TotalVolume = 0
+        Worksheets(yearValue).Activate
+
+    '5) loop through rows in the data
+            
     For j = 2 To RowCount
-    
-           '5a) Get total volume for current ticker
 
-     If Cells(j, 2).Value = ticker Then
+        '5a) Get total volume for current ticker
+
+        If Cells(j, 2).Value = ticker Then
 
             'increase totalVolume by the value in the current row
             TotalVolume = TotalVolume + Cells(j, 9).Value
-    
+
     End If
-    
-           '5b) get starting price for current ticker
+
+            '5b) get starting price for current ticker
 
         If Cells(j - 1, 2).Value <> ticker And Cells(j, 2).Value = ticker Then
             'set starting price
@@ -163,23 +163,23 @@ For i = 0 To 11
 
         End If
 
-           '5c) get ending price for current ticker
-           
-           If Cells(j + 1, 2).Value <> ticker And Cells(j, 2).Value = ticker Then
+            '5c) get ending price for current ticker
+            
+            If Cells(j + 1, 2).Value <> ticker And Cells(j, 2).Value = ticker Then
             'set ending price
             endingPrice = Cells(j, 7).Value
 
         End If
 
-       Next j
-       '6) Output data for current ticker
+        Next j
+    '6) Output data for current ticker
 
-    Worksheets("All Stocks Analysis").Activate
-    Cells(4 + i, 1).Value = ticker
-    Cells(4 + i, 2).Value = TotalVolume
-    Cells(4 + i, 3).Value = endingPrice / startingPrice - 1
+        Worksheets("All Stocks Analysis").Activate
+        Cells(4 + i, 1).Value = ticker
+        Cells(4 + i, 2).Value = TotalVolume
+        Cells(4 + i, 3).Value = endingPrice / startingPrice - 1
 
-   Next i
+     Next i
 
 
 
@@ -191,15 +191,15 @@ completed much faster than using the nested for loop for earlier.
 
 Here are the run-times using the original code.
 
-[2017 Original Run-time]<https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2017_Orginial.png> 
+[2017 Original Run-time](https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2017_Orginial.png) 
 
-[2018 Original Run-time]<https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2018_Original.png>
+[2018 Original Run-time](https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2018_Original.png)
 
 Here are the run-times using the refactored code.
 
-[2017 Refactored Run-time]<https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2017.png>
+[2017 Refactored Run-time](https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2017.png)
 
-[2018 Refactored Run-time]<https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2018.png>
+[2018 Refactored Run-time](https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2018.png)
 
 Based on the run-times, it is apparent that the refactored code run about .5 seconds faster than the original code making it more efficient. 
 
