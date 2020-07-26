@@ -24,8 +24,8 @@ I created a 4 different arrays; tickers, tickerVolumes, tickerStartingPrices, an
 The tickers array was used to establish the ticker symbol of a stock. I matched the other three arrays 
 with the tickers array by using a variable called the tickerIndex. 
 
-#### New Code
-"""
+#### Refactored Code
+
     '3) Initialize array of all tickers
     Dim tickers(12) As String
     
@@ -97,13 +97,118 @@ with the tickers array by using a variable called the tickerIndex.
         
         Worksheets("All Stocks Analysis").Activate
         tickerIndex = i
-        Cells(i + 4, 1).Value = tickers(i)
-        Cells(i + 4, 2).Value = tickerVolumes(i)
-        Cells(i + 4, 3).Value = tickerEndingPrices(i) / tickerStartingPrices(i) - 1
-"""
+        Cells(i + 4, 1).Value = tickers(tickerIndex)
+        Cells(i + 4, 2).Value = tickerVolumes(tickerIndex)
+        Cells(i + 4, 3).Value = tickerEndingPrices(tickerIndex) / tickerStartingPrices(tickerIndex) - 1
+        
+    Next i
+
+#### Original Code 
+
+2) Initialize array of all tickers
+   
+Dim tickers(12) As String
+
+tickers(0) = "AY"
+tickers(1) = "CSIQ"
+tickers(2) = "DQ"
+tickers(3) = "ENPH"
+tickers(4) = "FSLR"
+tickers(5) = "HASI"
+tickers(6) = "JKS"
+tickers(7) = "RUN"
+tickers(8) = "SEDG"
+tickers(9) = "SPWR"
+tickers(10) = "TERP"
+tickers(11) = "VSLR"
+
+   '3a) Initialize variables for starting price and ending price
+
+Dim startingPrice As Double
+Dim endingPrice As Double
+
+   '3b) Activate data worksheet
+   
+Worksheets(yearValue).Activate
+
+   '3c) Get the number of rows to loop over
+   
+RowCount = Cells(Rows.Count, "A").End(xlUp).Row
+
+   '4) Loop through tickers
+   
+For i = 0 To 11
+    ticker = tickers(i)
+    TotalVolume = 0
+    Worksheets(yearValue).Activate
+    
+       '5) loop through rows in the data
+       
+    For j = 2 To RowCount
+    
+           '5a) Get total volume for current ticker
+
+     If Cells(j, 2).Value = ticker Then
+
+            'increase totalVolume by the value in the current row
+            TotalVolume = TotalVolume + Cells(j, 9).Value
+    
+    End If
+    
+           '5b) get starting price for current ticker
+
+        If Cells(j - 1, 2).Value <> ticker And Cells(j, 2).Value = ticker Then
+            'set starting price
+            startingPrice = Cells(j, 7).Value
+
+        End If
+
+           '5c) get ending price for current ticker
+           
+           If Cells(j + 1, 2).Value <> ticker And Cells(j, 2).Value = ticker Then
+            'set ending price
+            endingPrice = Cells(j, 7).Value
+
+        End If
+
+       Next j
+       '6) Output data for current ticker
+
+    Worksheets("All Stocks Analysis").Activate
+    Cells(4 + i, 1).Value = ticker
+    Cells(4 + i, 2).Value = TotalVolume
+    Cells(4 + i, 3).Value = endingPrice / startingPrice - 1
+
+   Next i
+
+
 
 This variable allowed me to assign the tickerVolumes, tickerStartingPrices, and tickerEndingPrices to 
 each ticker symbol before interating through the data set. By doing it this way, the analysis would be 
 completed much faster than using the nested for loop for earlier.
 
-###
+### Run-time for Each Method and yearValue
+
+Here are the run-times using the original code.
+
+image file 
+
+image file
+
+Here are the run-times using the refactored code.
+
+image file
+
+image file
+
+Based on the run-times, it is apparent that the refactored code is more efficient than the original code.
+
+## Summary on Refactoring 
+
+### General thoughts on Refactoring
+
+The major advantage of refactoring code is making the code more efficient. The major disadvantage of refactoring code is that you are taking code that already works and potential making it unusable if you can refactor it correctly. For that reason it is always smart to save your original code just incase you end up not being able to refactor it. 
+
+### Refactoring in VBA Script
+
+The major advantage of refactoring code in VBA script is that you can use as much as of the original code as you want to and can put your new code side by side with your old code using different modules. The major disadvantage of refactoring code in VBA script is that if you do not have a strong understanding of the syntax, you will struggle to refactor your code as the syntax matters so much more when trying to make your code more efficient. 
