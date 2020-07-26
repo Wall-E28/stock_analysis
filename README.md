@@ -191,15 +191,15 @@ completed much faster than using the nested for loop for earlier.
 
 Here are the run-times using the original code.
 
-[2017 Original Run-time](https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2017_Orginial.png) 
+![2017 Original Run-time](https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2017_Orginial.png) 
 
-[2018 Original Run-time](https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2018_Original.png)
+![2018 Original Run-time](https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2018_Original.png)
 
 Here are the run-times using the refactored code.
 
-[2017 Refactored Run-time](https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2017.png)
+![2017 Refactored Run-time](https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2017.png)
 
-[2018 Refactored Run-time](https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2018.png)
+![2018 Refactored Run-time](https://github.com/Wall-E28/stock_analysis/blob/master/Resources/VBA_Challenge_2018.png)
 
 Based on the run-times, it is apparent that the refactored code run about .5 seconds faster than the original code making it more efficient. 
 
